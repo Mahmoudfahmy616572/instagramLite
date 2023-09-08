@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:instagram/firebase_services/Auth.dart';
 import 'package:instagram/screens/Register.dart';
@@ -167,7 +165,7 @@ class _Login2State extends State<Login2> {
                     children: [
                       TextButton(
                           onPressed: () {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => const Register()));
