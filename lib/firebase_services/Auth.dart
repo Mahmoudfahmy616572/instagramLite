@@ -58,6 +58,8 @@ class AuthMethod {
       required passwordController,
       required context}) async {
     try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController, password: passwordController);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         showSnackBar(context, 'No user found for that email.');

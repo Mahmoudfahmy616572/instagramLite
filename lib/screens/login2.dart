@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instagram/firebase_services/Auth.dart';
 import 'package:instagram/screens/Register.dart';
+import 'package:instagram/shared/snackbar.dart';
 
 class Login2 extends StatefulWidget {
   const Login2({super.key});
@@ -14,19 +15,22 @@ class _Login2State extends State<Login2> {
   final passwordController = TextEditingController();
   bool isVisibility = false;
   bool isloading = false;
-  signin() async {
+  signIn() async {
     setState(() {
       isloading = true;
     });
+
     await AuthMethod().loginCode(
         emailController: emailController.text,
         passwordController: passwordController.text,
         context: context);
-    if (!mounted) return;
 
     setState(() {
       isloading = false;
     });
+
+    if (!mounted) return;
+    showSnackBar(context, "successfully sign-in ☺");
   }
 
   @override
@@ -141,7 +145,7 @@ class _Login2State extends State<Login2> {
                   padding: const EdgeInsets.only(left: 10, right: 10),
                   child: ElevatedButton(
                       onPressed: () async {
-                        await signin();
+                        await signIn();
                       },
                       style: ElevatedButton.styleFrom(
                           minimumSize: const Size.fromHeight(50),
